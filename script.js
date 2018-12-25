@@ -134,7 +134,12 @@ const rotateAngles = {
 }
 
 const render = () => {
+  // Clear all elements currently on the canvas
   ctx.clearRect(0, 0, boardWidth, boardHeight)
+
+  // Draw the food
+  // Here, `state.food.x` corresponds to the in-game co-ordinate system
+  // and `blocksize` is the scaling factor
   ctx.drawImage(imgFood, state.food.x * blockSize, state.food.y * blockSize)
   const head = state.snake.body[0]
 
@@ -146,6 +151,7 @@ const render = () => {
   ctx.restore()
 
   for (let i = 1; i < state.snake.body.length; i++) {
+    // Finally, we draw each block of the snakes body
     ctx.drawImage(imgBody, state.snake.body[i].x * blockSize, state.snake.body[i].y * blockSize)
   }
 }
